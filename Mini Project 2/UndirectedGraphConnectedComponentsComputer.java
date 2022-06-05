@@ -12,7 +12,8 @@ import java.util.Set;
  * nodi del grafo che sono, alla fine del calcolo, le componenti connesse.
  *
  * @param <L> il tipo delle etichette dei nodi del grafo
- * @author Luca Tesei (template) - Simone Cisca simone.cisca@studeti.unicam.it (implementazione)
+ * @author Luca Tesei (template)
+ *     ** Simone Cisca simone.cisca@studeti.unicam.it ** (implementazione)
  */
 public class UndirectedGraphConnectedComponentsComputer<L> {
 
@@ -41,12 +42,12 @@ public class UndirectedGraphConnectedComponentsComputer<L> {
     public Set<Set<GraphNode<L>>> computeConnectedComponents(Graph<L> g) {
         checkParameter(g);
 
-
         //Matrice da ritornare
         Set<Set<GraphNode<L>>> toReturn = new HashSet<>();
         f.clear();
         for (GraphNode<L> element : g.getNodes())
             f.makeSet(element);
+
         for (GraphEdge<L> element : g.getEdges())
             if (f.findSet(element.getNode1()) != f.findSet(element.getNode2()))
                 f.union(element.getNode1(), element.getNode2());
@@ -56,12 +57,16 @@ public class UndirectedGraphConnectedComponentsComputer<L> {
 
         return toReturn;
     }
+ù
 
+    /**
+     * Metodo per il controllo del parametro
+     * @param g
+     */
     private void checkParameter(Graph<L> g) {
         if (g == null)
             throw new NullPointerException("Grafo nullo.");
         if (g.isDirected())
             throw new IllegalArgumentException("Grafo orientato.");
     }
-
 }

@@ -11,8 +11,9 @@ import java.util.*;
  * negativi. L'algoritmo implementato si avvale della classe
  * {@code ForestDisjointSets<GraphNode<L>>} per gestire una collezione d'insiemi
  * disgiunti di nodi del grafo.
- * 
- * @author Luca Tesei (template) - Simone Cisca simone.cisca@studeti.unicam.it (implementazione)
+ *
+ * @author Luca Tesei (template)
+ *     ** Simone Cisca simone.cisca@studeti.unicam.it ** (implementazione)
  * 
  * @param <L>
  *                tipo delle etichette dei nodi del grafo

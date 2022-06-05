@@ -14,15 +14,15 @@ import java.util.*;
  * 
  * Si possono usare i colori dei nodi per registrare la scoperta e la visita
  * effettuata dei nodi.
- * 
- * @author Luca Tesei (template) - Simone Cisca simone.cisca@studeti.unicam.it (implementazione)
+ *
+ * @author Luca Tesei (template)
+ *     ** Simone Cisca simone.cisca@studeti.unicam.it ** (implementazione)
  * 
  * @param <L>
  *                tipo delle etichette dei nodi del grafo
  *
  */
 public class PrimMSP<L> {
-
 
     /*
      * In particolare: si deve usare una coda con priorità che può semplicemente
@@ -61,7 +61,7 @@ public class PrimMSP<L> {
      *              con pesi negativi
      */
     public void computeMSP(Graph<L> g, GraphNode<L> s) {
-        checkParam(g, s);
+        checkParameters(g, s);
 
         for (GraphNode<L> element : g.getNodes()) {
             element.setColor(0);
@@ -96,7 +96,12 @@ public class PrimMSP<L> {
         return toReturn;
     }
 
-    private void checkParam(Graph<L> g, GraphNode<L> s){
+    /**
+     *  Metodo per il controllo dei parametri
+     * @param g - Grafo
+     * @param s - Nodo
+     */
+    private void checkParams(Graph<L> g, GraphNode<L> s){
         if(g == null || s == null)
             throw new NullPointerException("Parametri nulli.");
         if (g.isDirected())

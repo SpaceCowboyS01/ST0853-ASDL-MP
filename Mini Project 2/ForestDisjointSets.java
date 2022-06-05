@@ -11,8 +11,9 @@ import java.util.Set;
  * foresta di alberi ognuno dei quali rappresenta un insieme disgiunto. Si
  * vedano le istruzioni o il libro di testo Cormen et al. (terza edizione)
  * Capitolo 21 Sezione 3.
- * 
- * @author Luca Tesei (template) - Simone Cisca simone.cisca@studeti.unicam.it (implementazione)
+ *
+ * @author Luca Tesei (template)
+ *     ** Simone Cisca simone.cisca@studeti.unicam.it ** (implementazione)
  *
  * @param <E>
  *                il tipo degli elementi degli insiemi disgiunti
@@ -127,7 +128,7 @@ public class ForestDisjointSets<E> implements DisjointSets<E> {
      */
     @Override
     public void union(E e1, E e2) {
-        checkParameter(e1, e2);
+        checkParameters(e1, e2);
         if (findSet(e1).equals(findSet(e2)))
             return;
 /*
@@ -192,7 +193,7 @@ public class ForestDisjointSets<E> implements DisjointSets<E> {
         currentElements.clear();
     }
 
-    private void checkParameter(E e1, E e2){
+    private void checkParameters(E e1, E e2){
         if (e1 == null || e2 == null)
             throw new NullPointerException("Elementi nulli.");
         if (!isPresent(e1) || !isPresent(e2))

@@ -31,7 +31,8 @@ import java.util.*;
  * supporta tutti i metodi che usano indici, utilizzando l'indice assegnato a
  * ogni nodo in fase d'inserimento.
  *
- * @author Luca Tesei (template) - Simone Cisca simone.cisca@studeti.unicam.it (implementazione)
+ * @author Luca Tesei (template)
+ *     ** Simone Cisca simone.cisca@studeti.unicam.it ** (implementazione)
  */
 public class AdjacencyMatrixUndirectedGraph<L> extends Graph<L> {
     /*
@@ -173,7 +174,6 @@ public class AdjacencyMatrixUndirectedGraph<L> extends Graph<L> {
                 nodesIndex.put(element, toSetValue);
                 toSetValue++;
             }
-
     }
 
     /*
