@@ -2,7 +2,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @author Luca Tesei (template) **Simone Cisca, simone.cisca@studenti.unicam.it** (implementazione)
+ * @author  Luca Tesei (template)
+ *        **Simone Cisca, simone.cisca@studenti.unicam.it** (implementazione)
  *
  * Implementazione:
  * LinkedListDisjointSets utilizza un HashSet di tipo {@link DisjointSetElement} in quanto non

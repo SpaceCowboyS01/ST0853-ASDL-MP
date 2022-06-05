@@ -3,5 +3,6 @@
 ST0853 [link teoria](http://didattica.cs.unicam.it/doku.php?id=didattica:ay2122:algoritmi:main) - [link laboratorio](http://didattica.cs.unicam.it/doku.php?id=didattica:ay2122:programmazione:laboratorio)<br>
 [Computer Science](https://computerscience.unicam.it/) - University of Camerino [Unicam](https://www.unicam.it/).
 
+This repository contains both mini-projects from the algorithm and data structure lab exam.
 
 SDK 1.8.0

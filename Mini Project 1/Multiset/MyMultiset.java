@@ -1,7 +1,8 @@
 import java.util.*;
 
 /**
- * @author Luca Tesei (template) ** Simone Cisca - simone.cisca@studenti.unicam.it ** (implementazione)
+ * @author Luca Tesei (template)
+ *       **Simone Cisca - simone.cisca@studenti.unicam.it** (implementazione)
  *
  * Implementazione:
  * MyMultiset utilizza una HashMap con chiave "E" e valore Integer.
