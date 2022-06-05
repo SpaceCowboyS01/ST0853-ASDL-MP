@@ -5,7 +5,7 @@ _Professoressa Emanuela Merelli_ [link](https://computerscience.unicam.it/emanue
 ST0853 [link teoria](http://didattica.cs.unicam.it/doku.php?id=didattica:ay2122:algoritmi:main) - [link laboratorio](http://didattica.cs.unicam.it/doku.php?id=didattica:ay2122:programmazione:laboratorio)<br>
 [Computer Science](https://computerscience.unicam.it/) - University of Camerino [Unicam](https://www.unicam.it/).
 
-I took the exam on 15 November 2021.<br>
+I took the M.P.1 on 15 November 2021 and M.P.2 on 10 January 2022<br>
 Read carefully the instructions in the specific pdf.
 At the moment they are only in Italian.<br>
 SDK 1.8.0
