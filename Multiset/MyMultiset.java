@@ -67,12 +67,14 @@ public class MyMultiset<E> implements Multiset<E> {
         modificheEffettuate = 0;
         elementiPresenti = 0;
     }
-
     /**
-     * Questo metodo restituisce il numero di elementi presenti.
+     * Restituisce il numero totale di elementi in questo multinsieme. Ad
+     * esempio, per il multinsieme {@code [1,2,3,1,4]} il metodo restituisce
+     * {@code 5} poiché l'elemento {@code 1} ha due occorrenze.
      *
-     * @return elementiPresenti
-     *          il numero di elementi presenti in @{code mioHashMap}
+     * @return  elementiPresenti
+     *
+     *          il numero totale di elementi in questo multinsieme contando tutte le occorrenze
      */
     @Override
     public int size() {
@@ -80,11 +82,15 @@ public class MyMultiset<E> implements Multiset<E> {
     }
 
     /**
-     * Questo metodo restituisce la value di un oggetto se presente in @{code mioHashMap}
+     * Restituisce il numero di occorrenze di un certo elemento in questo
+     * multinsieme.
      *
      * @param element
-     * @return val
-     *          val corrisponde al valore corrispondente alla chiave di @{code element}
+     *                    l'elemento di cui contare le occorrenze
+     * @return il numero di occorrenze dell'elemento {@code element} in questo
+     *         multinsieme. Se l'elemento non è presente restituisce 0
+     * @throws NullPointerException
+     *                                  se {@code element} è null
      */
     @Override
     public int count(Object element) {
@@ -97,10 +103,23 @@ public class MyMultiset<E> implements Multiset<E> {
     }
 
     /**
-     * Questo metodo inserisce o aggiunge un nuovo oggetto a @{code mioHashMap}
+     * Aggiunge un numero di occorrenze di un certo elemento a questo multiset.
+     *
      * @param element
+     *                        l'elemento di cui aggiungere le occorrenze
      * @param occurrences
-     * @return occorrenzePrecedenti
+     *                        il numero di occorrenze dell'elemento da
+     *                        aggiungere. Può essere zero, nel qual caso non
+     *                        verrà apportata alcuna modifica.
+     * @return il numero di occorrenze dell'elemento prima dell'operazione;
+     *         possibilmente zero
+     * @throws IllegalArgumentException
+     *                                      se {@code occurrences} è negativo, o
+     *                                      se questa operazione comporterebbe
+     *                                      più di {@code Integer.MAX_VALUE}
+     *                                      occorrenze dell'elemento
+     * @throws NullPointerException
+     *                                      se {@code element} è null
      */
     @Override
     public int add(E element, int occurrences) {
@@ -130,18 +149,41 @@ public class MyMultiset<E> implements Multiset<E> {
         return occorrenzePrecedenti;
     }
 
-    // Richiamo il primo metodo passando come parametro element ed 1
-    // in quanto si vuole inserire una singola occorrenza
+    /**
+     * Aggiunge una singola occorrenza di un certo elemento a questo multiset.
+     *
+     * @param element
+     *                        l'elemento di cui aggiungere l'occorrenza
+     * @throws IllegalArgumentException
+     *                                      se questa operazione comporterebbe
+     *                                      più di {@code Integer.MAX_VALUE}
+     *                                      occorrenze dell'elemento
+     * @throws NullPointerException
+     *                                      se {@code element} è null
+     */
     @Override
     public void add(E element) {
         add(element, 1);
     }
 
     /**
-     * Questo metodo rimuove definitivamente o @{code occurrences} volte @{code element} da @{code mioHashMap}
+     * Rimuove da questo multinsieme un dato numero di occorrenze di un elemento
+     * se questo è presente secondo il metodo {@code boolean contains(Object)}.
+     * Se il multinsieme contiene meno del dato numero di occorrenze, tutte le
+     * occorrenze verranno rimosse.
+     *
      * @param element
+     *                        l'elemento di cui rimuovere le occorrenze
      * @param occurrences
-     * @return occorrenzePrecedenti
+     *                        il numero di occorrenze dell'elemento da
+     *                        rimuovere. Può essere zero, nel qual caso non
+     *                        verrà apportata alcuna modifica
+     * @return il numero di occorrenze dell'elemento prima dell'operazione;
+     *         possibilmente zero
+     * @throws IllegalArgumentException
+     *                                      se {@code occurrences} è negativo
+     * @throws NullPointerException
+     *                                      se {@code element} è null
      */
     @Override
     public int remove(Object element, int occurrences) {
@@ -170,15 +212,36 @@ public class MyMultiset<E> implements Multiset<E> {
     }
 
     /**
-     * Questo metodo rimuove definitivamente @{code element} da @{code mioHashMap}
+     * Rimuove da questo multinsieme una singola occorrenza di un elemento se
+     * questo è presente secondo il metodo {@code boolean contains(Object)}.
+     *
      * @param element
-     * @return true se
+     *                    l'elemento di cui rimuovere l'occorrenza
+     * @return {@code true} se un'occorrenza è stata trovata e rimossa,
+     *         {@code false altrimenti}
+     * @throws NullPointerException
+     *                                  se {@code element} è null
      */
     @Override
     public boolean remove(Object element) {
         return remove(element, 1) > 0;
     }
 
+    /**
+     * Aggiunge o rimuove le occorrenze di un elemento in modo tale che il
+     * l'elemento raggiunga il numero di occorrenze desiderato.
+     *
+     * @param element
+     *                        l'elemento di cui aggiungere o togliere occorrenze
+     * @param occurrences
+     *                        il numero desiderato di occorrenze dell'elemento
+     * @return il numero di occorrenze dell'elemento prima dell'operazione;
+     *         possibilmente zero
+     * @throws IllegalArgumentException
+     *                                      se {@code count} è negativo
+     * @throws NullPointerException
+     *                                      se {@code element} è nullo
+     */
     @Override
     public int setCount(E element, int count) {
         if (element == null)
@@ -204,19 +267,48 @@ public class MyMultiset<E> implements Multiset<E> {
         return occorrenzePrecedenti;
     }
 
-    // Restituisco un set delle sole chiavi in quanto un Set non può contenere valori duplicati
+    /**
+     * Restituisce l'insieme di elementi distinti contenuti in questo
+     * multinsieme. L'ordine degli elementi nel set risultato non è specificato.
+     *
+     * @return l'insieme di elementi distinti in questo multinsieme
+     */
     @Override
     public Set<E> elementSet() {
         return new HashSet<E>(mioHashMap.keySet());
     }
-
-    // Richiamo il costruttore della classe interna Itr e ne restituisco l'oggetto
+    /**
+     * Restituisce un iteratore per questo multinsieme. L'iteratore deve
+     * presentare tutti gli elementi del multinsieme (in un ordine qualsiasi) e
+     * per ogni elemento deve presentare tutte le occorrenze. Le occorrenze
+     * dello stesso elemento devono essere presentate in sequenza. L'iteratore
+     * restituito non implementa l'operazione {@code remove()}.
+     *
+     * L'iteratore restituito deve essere <b>fail-fast</b>: se il multinsieme
+     * viene modificato strutturalmente (cioè viene fatta un'aggiunta o una
+     * cancellazione di almeno un'occorrenza) in qualsiasi momento dopo la
+     * creazione dell'iteratore, l'iteratore dovrà lanciare una
+     * {@code ConcurrentModificationException} alla chiamata successiva del
+     * metodo {@code next()}.
+     *
+     * @return un iteratore per questo multinsieme
+     */
     @Override
     public Iterator<E> iterator() {
         return new Itr();
     }
 
-    // Utilizzo il metodo containsKey della HashMap
+    /**
+     * Determina se questo multinsieme contiene l'elemento specificato.
+     *
+     * @param element
+     *                    l'elemento da cercare
+     * @return {@code true} se questo multinsieme contiene almeno una occorrenza
+     *         di un elemento {@code e} tale che
+     *         {@code element.equals(e) == true}
+     * @throws NullPointerException
+     *                                  se {@code element} è null
+     */
     @Override
     public boolean contains(Object element) {
         if(element == null)
@@ -224,7 +316,10 @@ public class MyMultiset<E> implements Multiset<E> {
         return mioHashMap.containsKey(element);
     }
 
-    // La pulizia viene eseguita con il metodo clear della HashMap
+    /**
+     * Rimuove tutti gli elementi da questo multinsieme. Il multinsieme sarà
+     * vuoto dopo il ritorno da questo metodo.
+     */
     @Override
     public void clear() {
         mioHashMap.clear();
@@ -233,13 +328,18 @@ public class MyMultiset<E> implements Multiset<E> {
         modificheEffettuate++;
     }
 
-    // Se la HashMap è vuota, lo sarà anche MyMultiset
+    /**
+     * Determina se questo multinsieme è vuoto.
+     *
+     * @return {@code true} se questo multinsieme è vuoto, {@code false} se
+     *         contiene almeno una occorrenza di un elemento
+     */
     @Override
     public boolean isEmpty() {
         return mioHashMap.isEmpty();
     }
 
-    /*
+    /**
      * Due multinsiemi sono uguali se e solo se contengono esattamente gli
      * stessi elementi (utilizzando l'equals della classe E) con le stesse
      * molteplicità.
@@ -255,24 +355,24 @@ public class MyMultiset<E> implements Multiset<E> {
 
         MyMultiset<E> temp = (MyMultiset<E>) obj;
 
-        // Se non hanno lo stesso numero di elementi, sono sicuro che non sono uguali
+        // Se non hanno lo stesso numero di elementi, sicuramente non sono uguali
         if (temp.size() != this.size())
             return false;
 
-        // Per sapere se tutti gli elementi di thi.mioHashMap sono presenti e hanno
+       // Per sapere se tutti gli elementi di thi.mioHashMap sono presenti e hanno
         // lo stesso numero di occorrenze temp.mioHashMap, ovvero dell'oggetto passato come parametro.
         // Utilizzo un foreach in quanto non devo modificare i valori, ma solo confrontarli.
         for (E e : this.mioHashMap.keySet()) {
-            Integer f = temp.mioHashMap.get(e);
-            // Se f è null vuol dire che non si hanno occorrenze di quel elemento, di conseguenza non è presente
+            Integer nullIsFalse = temp.mioHashMap.get(e);
+            // Se f è null vuol dire che non si hanno occorrenze di quel elemento,
+            // di conseguenza non è presente
             if (f == null || !f.equals(this.mioHashMap.get(e)))
                 return false;
         }
-
         return true;
     }
 
-    /*
+    /**
      * Da ridefinire in accordo con la ridefinizione di equals.
      *
      * @see java.lang.Object#hashCode()
@@ -282,7 +382,7 @@ public class MyMultiset<E> implements Multiset<E> {
         int hash = 0;
 
         for (E e : mioHashMap.keySet())
-            hash += 2 * e.hashCode() + mioHashMap.get(e).hashCode();
+            hash += 31 * e.hashCode() + mioHashMap.get(e).hashCode();
 
         return hash;
     }
